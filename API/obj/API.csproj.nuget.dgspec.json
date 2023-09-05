@@ -176,7 +176,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Projects\\Amazon\\Core\\Core.csproj": {
+                "projectPath": "C:\\Projects\\Amazon\\Core\\Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
