@@ -10,10 +10,10 @@ namespace Core.Entities
     {
         
         public string Description { get; set; }
-        public Brand Brand { get; set; }
+        public ProductBrand Brand { get; set; }
         public Guid BrandId { get; set; }
 
-        public Types Types { get; set; }
-        public Guid TypeId { get; set; }
+        public ProductType Types { get; set; }
+        public Guid TypesId { get; set; }
     }
 }

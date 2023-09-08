@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class Brand : BaseEntity
+    public class ProductType : BaseEntity
     {
-      
-        
+     
     }
 }
