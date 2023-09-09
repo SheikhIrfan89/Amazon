@@ -13,6 +13,8 @@ builder.Services.AddDbContext<DataContext> (options => {
 });
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductBrandService, ProductBrandService>();
+builder.Services.AddScoped<IProductTypesService, ProductTypeService>();
 
 
 
