@@ -11,5 +11,9 @@ namespace Core.Interfaces
     {
         Task<List<ProductType>> GetProductTypeByAsync();
         Task<ProductType> GetProductTypeByIdAsync(Guid id);
+
+        Task<List<ProductType>> AddProductTypeAsync(ProductType productType);
+        Task<List<ProductType>> DeleteProductTypeAsync(ProductType productTyp);
+        Task<List<ProductType>> UpdateProductTypeAsync(ProductType productTyp);
     }
 }

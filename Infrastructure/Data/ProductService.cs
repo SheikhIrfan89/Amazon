@@ -18,6 +18,23 @@ namespace Infrastructure.Data
             _context = context;
         }
 
+        public async Task<List<Product>> AddProductAsync(Product product)
+        {
+            _context.Products.AddAsync(product);
+            _context.SaveChanges();
+
+            return await _context.Products.ToListAsync();   
+        }
+
+        public  async Task<List<Product>> DeleteProductAsync(Product product)
+        {
+
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return await (_context.Products.ToListAsync());
+
+        }
+
         public async Task<Product> GetProductByIdAsync(Guid id)
         {
             return await _context.Products.FirstOrDefaultAsync(p => p.Id == id) ; 
@@ -28,6 +45,15 @@ namespace Infrastructure.Data
 
           return await _context.Products.ToListAsync();
             
+        }
+
+        public async Task<List<Product>> UpdateProductAsync(Product product)
+        {
+            _context.ChangeTracker.Clear();
+            _context.Products.Update(product);
+            _context.SaveChanges();
+
+            return await (_context.Products.ToListAsync());
         }
     }
 }

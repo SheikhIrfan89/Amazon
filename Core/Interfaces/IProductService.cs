@@ -11,5 +11,11 @@ namespace Core.Interfaces
     {
         Task<List<Product>> GetProductsByAsync();
         Task<Product> GetProductByIdAsync(Guid id);
+
+        Task<List<Product>> AddProductAsync(Product product);
+        Task<List<Product>> UpdateProductAsync(Product product);
+
+        Task<List<Product>> DeleteProductAsync(Product product);
+
     }
 }

@@ -29,16 +29,56 @@ namespace API.Controllers
 
         [HttpGet("{id}")]
 
-        public async Task<ActionResult<List<Product>>> GetProducts(Guid id)
+        public async Task<ActionResult<List<Product>>> GetProductsByID(Guid id)
         {
             var product = await _reporsitory.GetProductByIdAsync(id);
 
             if (product == null)
                 return BadRequest($"Product with ID {id} not found");
-            
+
             return Ok(product);
 
         }
+
+
+        [HttpPost("AddProduct")]
+
+        public async Task<ActionResult<List<Product>>> AddProduct(Product product)
+        {
+            var products = await _reporsitory.AddProductAsync(product);
+            return Ok(products);
+
+
+        }
+
+        [HttpDelete("Delete Product")]
+
+        public async Task<ActionResult<List<Product>>> DeleteProduct(Product product)
+        {
+            var prod = await _reporsitory.GetProductByIdAsync(product.Id);
+
+            if (prod == null)
+                return BadRequest($"Product with ID {product.Id} not present");
+
+            var products = await _reporsitory.DeleteProductAsync(product);
+            return Ok(products);
+        }
+
+        [HttpPut("UpdateProduct")]
+
+        public async Task<ActionResult<List<Product>>> UpdateProduct(Product product)
+        {
+            var prod = await _reporsitory.GetProductByIdAsync(product.Id);
+
+            if (prod == null)
+                return BadRequest($"Product with ID {product.Id} not present");
+                     
+
+           var products = await _reporsitory.UpdateProductAsync(product);
+            return Ok(products);
+        }
+
+
 
     }
 }

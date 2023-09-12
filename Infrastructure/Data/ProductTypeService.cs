@@ -17,15 +17,59 @@ namespace Infrastructure.Data
         {
             _context = context;
         }
-        public async Task<List<ProductType>> GetProductTypeByAsync()
+
+       
+        public async Task<List<ProductType>> AddProductTypeAsync(ProductType productType)
         {
+            _context.ProductTypes.Add(productType);
+            _context.SaveChanges();
+                        
+            return await _context.ProductTypes.ToListAsync();
+        }
+
+        
+        public async Task<List<ProductType>> DeleteProductTypeAsync(ProductType prodstypes)
+        {
+            _context.ChangeTracker.Clear();
+            _context.ProductTypes.Remove(prodstypes);
+             _context.SaveChanges();
+            
+            return await (_context.ProductTypes.ToListAsync());
+        }
+
+        public async Task<List<ProductType>> GetProductTypeByAsync()
+        {            
             return await _context.ProductTypes.ToListAsync();
                 
         }
 
         public async Task<ProductType> GetProductTypeByIdAsync(Guid id)
         {
-            return await _context.ProductTypes.FirstOrDefaultAsync(p => p.Id == id);
+            var prodty = _context.ProductTypes.Find(id);
+
+            if (prodty != null)
+                return prodty;
+            else return null;
+
+
+         //   return await _context.ProductTypes.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+       
+
+        public async Task<List<ProductType>> UpdateProductTypeAsync(ProductType productTyp)
+        {
+            _context.ChangeTracker.Clear();
+
+            var prodty =  _context.ProductTypes.Attach(productTyp);
+            prodty.State = EntityState.Modified;
+
+
+            //_context.ProductTypes.Update(productTyp);
+            _context.SaveChanges();
+            return await (_context.ProductTypes.ToListAsync());
+
+            
         }
     }
 }

@@ -44,6 +44,7 @@ namespace API.Controllers
         {
              _repository.AddProductBrandsAsync(productBrand);
             return Ok(await _repository.GetProductBrandsByAsync());
+           
         }
 
         [HttpDelete("{id}")]

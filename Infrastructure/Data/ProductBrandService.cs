@@ -16,8 +16,7 @@ namespace Infrastructure.Data
         public ProductBrandService(DataContext context)
         {
             _context = context;
-        }
-             
+        }           
 
       
         public async Task<List<ProductBrand>> GetProductBrandsByAsync()
