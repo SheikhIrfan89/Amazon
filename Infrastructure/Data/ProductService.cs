@@ -40,10 +40,10 @@ namespace Infrastructure.Data
             return await _context.Products.FirstOrDefaultAsync(p => p.Id == id) ; 
         }
 
-        public async Task<List<Product>>  GetProductsByAsync()
+        public async Task<IReadOnlyList<Product>>  GetProductsByAsync()
         {
 
-          return await _context.Products.ToListAsync();
+          return await _context.Products.Include(p => p.Brand).Include(p => p.Types).ToListAsync();
             
         }
 

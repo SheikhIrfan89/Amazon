@@ -9,7 +9,7 @@ namespace Core.Interfaces
 {
     public interface IProductService
     {
-        Task<List<Product>> GetProductsByAsync();
+        Task<IReadOnlyList<Product>> GetProductsByAsync();
         Task<Product> GetProductByIdAsync(Guid id);
 
         Task<List<Product>> AddProductAsync(Product product);
