@@ -1,5 +1,4 @@
-﻿using API.Dtos;
-using Core.Entities;
+﻿using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,23 +19,11 @@ namespace API.Controllers
 
         [HttpGet("GetProducts")]
 
-        public async Task<ActionResult<IReadOnlyList<ProductDto>>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts()
         {
             var productList = await _reporsitory.GetProductsByAsync();
 
-            return productList.Select(product => new ProductDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                BrandName = product.Brand.Name,
-                BrandId = product.BrandId,
-                TypeName = product.Types.Name,
-                TypesId = product.Types.Id
-            }).ToList();
-
-
-            //return Ok(productList);
+            return Ok(productList);
 
         }
 
@@ -85,9 +72,9 @@ namespace API.Controllers
 
             if (prod == null)
                 return BadRequest($"Product with ID {product.Id} not present");
+                     
 
-
-            var products = await _reporsitory.UpdateProductAsync(product);
+           var products = await _reporsitory.UpdateProductAsync(product);
             return Ok(products);
         }
 
