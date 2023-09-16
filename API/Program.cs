@@ -1,3 +1,5 @@
+using API.Helpers;
+using AutoMapper;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +17,8 @@ builder.Services.AddDbContext<DataContext> (options => {
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductBrandService, ProductBrandService>();
 builder.Services.AddScoped<IProductTypesService, ProductTypeService>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 
 

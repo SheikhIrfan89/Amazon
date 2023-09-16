@@ -1,4 +1,5 @@
 ﻿using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +12,12 @@ namespace API.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _reporsitory;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductService reporsitory)
+        public ProductsController(IProductService reporsitory, IMapper mapper)
         {
             _reporsitory = reporsitory;
+            _mapper = mapper;
         }
 
 
@@ -24,16 +27,19 @@ namespace API.Controllers
         {
             var productList = await _reporsitory.GetProductsByAsync();
 
-            return productList.Select(product => new ProductDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                BrandName = product.Brand.Name,
-                BrandId = product.BrandId,
-                TypeName = product.Types.Name,
-                TypesId = product.Types.Id
-            }).ToList();
+            //return productList.Select(product => new ProductDto
+            //{
+            //    Id = product.Id,
+            //    Name = product.Name,
+            //    Description = product.Description,
+            //    Brand = product.Brand.Name,
+            //    BrandId = product.BrandId,
+            //    Type = product.Types.Name,
+            //    TypesId = product.Types.Id
+            //}).ToList();
+
+
+            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(productList));
 
 
             //return Ok(productList);
