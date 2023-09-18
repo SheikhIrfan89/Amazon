@@ -15,5 +15,7 @@ namespace Core.Entities
 
         public ProductType Types { get; set; }
         public Guid TypesId { get; set; }
+
+        public string PictureUrl { get; set; }
     }
 }

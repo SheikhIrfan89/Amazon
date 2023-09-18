@@ -10,5 +10,6 @@ namespace API.Dtos
 
         public string Types { get; set; }
         public Guid TypesId { get; set; }
+        public string PictureUrl { get; set; }
     }
 }

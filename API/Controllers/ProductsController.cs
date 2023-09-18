@@ -48,14 +48,17 @@ namespace API.Controllers
 
         [HttpGet("{id}")]
 
-        public async Task<ActionResult<List<Product>>> GetProductsByID(Guid id)
+        public async Task<ActionResult<List<ProductDto>>> GetProductsByID(Guid id)
         {
-            var product = await _reporsitory.GetProductByIdAsync(id);
+            var prodSearch = await _reporsitory.GetProductByIdAsync(id);
 
-            if (product == null)
+            if (prodSearch == null)
                 return BadRequest($"Product with ID {id} not found");
 
-            return Ok(product);
+            return Ok(_mapper.Map<Product, ProductDto>(prodSearch));
+
+
+            
 
         }
 
