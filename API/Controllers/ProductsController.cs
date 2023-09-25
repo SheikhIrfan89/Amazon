@@ -1,4 +1,5 @@
 ﻿using API.Dtos;
+using API.Errors;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
@@ -53,7 +54,9 @@ namespace API.Controllers
             var prodSearch = await _reporsitory.GetProductByIdAsync(id);
 
             if (prodSearch == null)
-                return BadRequest($"Product with ID {id} not found");
+                //return BadRequest($"Product with ID {id} not found");
+                return NotFound(new ApiResponse(404));
+                
 
             return Ok(_mapper.Map<Product, ProductDto>(prodSearch));
 
